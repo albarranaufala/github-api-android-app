@@ -52,7 +52,7 @@ class FollowingFragment : Fragment() {
         followingViewModel.getFollowing().observe(viewLifecycleOwner, Observer { userItems ->
             userItems?.let {
                 adapter.setData(it)
-//                showLoading(false)
+                showLoading(false)
             }
         })
     }
@@ -62,5 +62,9 @@ class FollowingFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         return inflater.inflate(R.layout.fragment_following, container, false)
+    }
+
+    private fun showLoading(state: Boolean) {
+        progressBar.visibility = if(state) View.VISIBLE else View.GONE
     }
 }

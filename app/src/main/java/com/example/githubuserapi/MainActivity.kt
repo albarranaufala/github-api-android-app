@@ -1,8 +1,14 @@
 package com.example.githubuserapi
 
+import android.app.SearchManager
+import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
 import android.view.View
+import android.widget.SearchView
+import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -34,6 +40,31 @@ class MainActivity : AppCompatActivity() {
                 showLoading(false)
             }
         })
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        val inflater = menuInflater
+        inflater.inflate(R.menu.options_menu, menu)
+
+        val searchManager = getSystemService(Context.SEARCH_SERVICE) as SearchManager
+        val searchView = menu.findItem(R.id.menuSearch).actionView as SearchView
+        searchView.setSearchableInfo(searchManager.getSearchableInfo(componentName))
+        searchView.queryHint = resources.getString(R.string.search_user)
+        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String): Boolean {
+                Toast.makeText(this@MainActivity, query, Toast.LENGTH_SHORT).show()
+                return true
+            }
+            override fun onQueryTextChange(newText: String): Boolean {
+                return false
+            }
+        })
+        
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return super.onOptionsItemSelected(item)
     }
 
     private fun showLoading(state: Boolean) {

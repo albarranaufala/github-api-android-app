@@ -3,10 +3,10 @@ package com.example.githubuserapi
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.githubuserapi.adapter.SectionsPagerAdapter
-import com.example.githubuserapi.fragment.FollowerFragment
 import com.example.githubuserapi.model.User
 import com.example.githubuserapi.viewmodel.UserDetailViewModel
 import com.squareup.picasso.Picasso
@@ -24,6 +24,8 @@ class UserDetailActivity : AppCompatActivity() {
         setContentView(R.layout.activity_user_detail)
 
         val user = intent.getParcelableExtra<User>(EXTRA_USER) as User
+        textUsername.text = user.username
+        textGithubUrl.text = user.githubUrl
 
         val sectionsPagerAdapter = SectionsPagerAdapter(this, supportFragmentManager)
         sectionsPagerAdapter.username = user.username
@@ -36,15 +38,13 @@ class UserDetailActivity : AppCompatActivity() {
 
         userDetailViewModel.getUser().observe(this, Observer { userItem ->
             userItem?.let {
-                textUsername.text = userItem.username
-                textGithubUrl.text = userItem.githubUrl
                 textFollowers.text = userItem.followersCount.toString()
                 textFollowing.text = userItem.followingCount.toString()
                 textRepositories.text = userItem.repositoriesCount.toString()
                 Picasso.get().load(userItem.avatar)
                     .placeholder(R.drawable.dummy_avatar)
                     .into(avatar)
-//                showLoading(false)
+                showLoading(false)
             }
         })
 
@@ -57,5 +57,15 @@ class UserDetailActivity : AppCompatActivity() {
     override fun onSupportNavigateUp(): Boolean {
         onBackPressed()
         return true
+    }
+    private fun showLoading(state: Boolean) {
+        if(state) {
+            ln_user_follow.visibility = View.GONE
+            progressBar.visibility =  View.VISIBLE
+        } else {
+            ln_user_follow.visibility = View.VISIBLE
+            progressBar.visibility = View.GONE
+        }
+
     }
 }

@@ -10,10 +10,10 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.githubuserapi.R
-import com.example.githubuserapi.UserDetailActivity
 import com.example.githubuserapi.adapter.UserAdapter
 import com.example.githubuserapi.viewmodel.FollowerViewModel
 import kotlinx.android.synthetic.main.fragment_follower.*
+import kotlinx.android.synthetic.main.fragment_follower.progressBar
 
 class FollowerFragment : Fragment() {
     private lateinit var adapter: UserAdapter
@@ -60,8 +60,11 @@ class FollowerFragment : Fragment() {
         followerViewModel.getFollowers().observe(viewLifecycleOwner, Observer { userItems ->
             userItems?.let {
                 adapter.setData(it)
-//                showLoading(false)
+                showLoading(false)
             }
         })
+    }
+    private fun showLoading(state: Boolean) {
+        progressBar.visibility = if(state) View.VISIBLE else View.GONE
     }
 }
