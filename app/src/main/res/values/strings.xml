@@ -1,5 +1,13 @@
 <resources>
     <string name="app_name">GithubUserAPI</string>
     <string name="username">username</string>
+    <string name="followers">followers</string>
+    <string name="following">following</string>
+    <string name="repositories">repos</string>
+    <string name="github_label">Github</string>
     <string name="github_url">https://www.github.com/albarranaufala</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="tab_followers">Followers</string>
+    <string name="tab_following">Following</string>
 </resources>

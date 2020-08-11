@@ -26,7 +26,6 @@ class MainActivity : AppCompatActivity() {
         recyclerViewUsers.adapter = adapter
 
         mainViewModel = ViewModelProvider(this, ViewModelProvider.NewInstanceFactory()).get(MainViewModel::class.java)
-
         mainViewModel.setDefaultUsers()
 
         mainViewModel.getUsers().observe(this, Observer { userItems ->
