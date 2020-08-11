@@ -4,6 +4,7 @@ import android.app.SearchManager
 import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
@@ -35,9 +36,12 @@ class MainActivity : AppCompatActivity() {
         mainViewModel.setDefaultUsers()
 
         mainViewModel.getUsers().observe(this, Observer { userItems ->
-            userItems?.let {
-                adapter.setData(it)
+            if(userItems !== null) {
+                adapter.setData(userItems)
                 showLoading(false)
+            } else {
+                adapter.setData(arrayListOf())
+                showLoading(true)
             }
         })
     }
@@ -52,14 +56,14 @@ class MainActivity : AppCompatActivity() {
         searchView.queryHint = resources.getString(R.string.search_user)
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String): Boolean {
-                Toast.makeText(this@MainActivity, query, Toast.LENGTH_SHORT).show()
+                mainViewModel.searchUsers(query)
                 return true
             }
             override fun onQueryTextChange(newText: String): Boolean {
                 return false
             }
         })
-        
+
         return true
     }
 
