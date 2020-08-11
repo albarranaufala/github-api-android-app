@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">GithubUserAPI</string>
+    <string name="app_name">Github Users</string>
     <string name="username">username</string>
     <string name="followers">followers</string>
     <string name="following">following</string>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Pengguna Github</string>
+    <string name="username">username</string>
+    <string name="followers">pengikut</string>
+    <string name="following">mengikuti</string>
+    <string name="repositories">repo</string>
+    <string name="github_label">Github</string>
+    <string name="github_url">https://www.github.com/albarranaufala</string>
+    <string name="search_user">Cari user</string>
+    <string name="tab_followers">pengikut</string>
+    <string name="tab_following">mengikuti</string>
+    <string name="change_language">Ganti bahasa</string>
+</resources>
