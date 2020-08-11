@@ -2,9 +2,11 @@ package com.example.githubuserapi
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.githubuserapi.adapter.SectionsPagerAdapter
+import com.example.githubuserapi.fragment.FollowerFragment
 import com.example.githubuserapi.model.User
 import com.example.githubuserapi.viewmodel.UserDetailViewModel
 import com.squareup.picasso.Picasso
@@ -24,6 +26,7 @@ class UserDetailActivity : AppCompatActivity() {
         val user = intent.getParcelableExtra<User>(EXTRA_USER) as User
 
         val sectionsPagerAdapter = SectionsPagerAdapter(this, supportFragmentManager)
+        sectionsPagerAdapter.username = user.username
         view_pager.adapter = sectionsPagerAdapter
         tabs.setupWithViewPager(view_pager)
         supportActionBar?.elevation = 0f
@@ -44,7 +47,6 @@ class UserDetailActivity : AppCompatActivity() {
 //                showLoading(false)
             }
         })
-
 
         supportActionBar?.let {
             it.title = user.username

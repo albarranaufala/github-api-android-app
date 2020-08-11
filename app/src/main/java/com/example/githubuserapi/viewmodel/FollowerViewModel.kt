@@ -9,14 +9,15 @@ import com.loopj.android.http.AsyncHttpClient
 import com.loopj.android.http.AsyncHttpResponseHandler
 import cz.msebera.android.httpclient.Header
 import org.json.JSONArray
-import org.json.JSONObject
 
-class UserDetailViewModel: ViewModel() {
-    val user = MutableLiveData<User>()
+class FollowerViewModel  : ViewModel() {
+    val followers = MutableLiveData<ArrayList<User>>()
 
-    fun setUser(username: String) {
+    fun setFollowers(username: String): ArrayList<User>{
+        val listItems = ArrayList<User>()
+
         val token = "00eeccda8a24157045d5dad3bc94fe93498839c0"
-        val url = "https://api.github.com/users/$username"
+        val url = "https://api.github.com/users/$username/followers"
 
         val client = AsyncHttpClient()
         client.addHeader("Authorization", "token $token")
@@ -27,16 +28,17 @@ class UserDetailViewModel: ViewModel() {
                 try {
                     //parsing json
                     val result = String(responseBody)
-                    val objectResult = JSONObject(result)
-                    val userResult = User()
-                    userResult.id = objectResult.getInt("id")
-                    userResult.username = objectResult.getString("login")
-                    userResult.avatar = objectResult.getString("avatar_url")
-                    userResult.githubUrl = objectResult.getString("html_url")
-                    userResult.followersCount = objectResult.getInt("followers")
-                    userResult.followingCount = objectResult.getInt("following")
-                    userResult.repositoriesCount = objectResult.getInt("public_repos")
-                    user.postValue(userResult)
+                    val list = JSONArray(result)
+                    for (i in 0 until list.length()) {
+                        val user = list.getJSONObject(i)
+                        val userItem = User()
+                        userItem.id = user.getInt("id")
+                        userItem.username = user.getString("login")
+                        userItem.avatar = user.getString("avatar_url")
+                        userItem.githubUrl = user.getString("html_url")
+                        listItems.add(userItem)
+                    }
+                    followers.postValue(listItems)
                 } catch (e: Exception) {
                     Log.d("Exception", e.message.toString())
                 }
@@ -45,9 +47,10 @@ class UserDetailViewModel: ViewModel() {
                 Log.d("onFailure", error.message.toString())
             }
         })
+        return listItems
     }
 
-    fun getUser() : LiveData<User> {
-        return user
+    fun getFollowers() : LiveData<ArrayList<User>> {
+        return followers
     }
 }
