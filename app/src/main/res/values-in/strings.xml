@@ -11,4 +11,6 @@
     <string name="tab_followers">pengikut</string>
     <string name="tab_following">mengikuti</string>
     <string name="change_language">Ganti bahasa</string>
+    <string name="not_found">Username tidak ditemukan</string>
+    <string name="favorite">Favorit</string>
 </resources>

@@ -10,4 +10,6 @@
     <string name="tab_followers">Followers</string>
     <string name="tab_following">Following</string>
     <string name="change_language">Change Language</string>
+    <string name="not_found">Username not found</string>
+    <string name="favorite">Favorite</string>
 </resources>
