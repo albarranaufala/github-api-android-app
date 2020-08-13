@@ -18,6 +18,8 @@
     <string name="remove_favorite_success">Menghapus dari favorit sukses</string>
     <string name="remove_favorite_failed">Menghapus dari favorit gagal</string>
     <string name="favorite_empty">Kamu tidak memiliki daftar favorit</string>
+    <string name="reminder_title">Pengingat</string>
+    <string name="reminder_label">Ayo cari pengguna populer di Github!</string>
     <string name="reminder_9am">Ingatkan pada jam 9.00 Pagi</string>
     <string name="reminder_9am_summary">Kamu akan menerima notifikasi dari kami</string>
     <string name="reminder_on">Pengingat diaktifkan</string>

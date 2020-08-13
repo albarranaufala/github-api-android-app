@@ -12,7 +12,6 @@ import com.example.githubuserapi.db.UserHelper
 import com.example.githubuserapi.viewmodel.FavoriteListViewModel
 import kotlinx.android.synthetic.main.activity_favorite_list.*
 import kotlinx.android.synthetic.main.activity_favorite_list.progressBar
-import kotlinx.android.synthetic.main.activity_user_detail.*
 
 class FavoriteListActivity : AppCompatActivity() {
     private lateinit var adapter: UserAdapter
