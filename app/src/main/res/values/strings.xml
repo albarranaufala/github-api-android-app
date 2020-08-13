@@ -12,4 +12,8 @@
     <string name="change_language">Change Language</string>
     <string name="not_found">Username not found</string>
     <string name="favorite">Favorite</string>
+    <string name="favorite_success">Add to favorite success</string>
+    <string name="favorite_failed">Add to favorite failed</string>
+    <string name="remove_favorite_success">Remove from favorite success</string>
+    <string name="remove_favorite_failed">Remove from favorite failed</string>
 </resources>

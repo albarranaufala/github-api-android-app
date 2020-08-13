@@ -42,21 +42,17 @@
                         android:layout_marginStart="16dp"
                         tools:visibility="gone"
                         />
-                    <LinearLayout
-                        android:id="@+id/ln_user_follow"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_centerInParent="true"
-                        android:layout_toEndOf="@id/avatar"
-                        android:visibility="gone"
-                        tools:visibility="visible"
-                        android:layout_marginStart="16dp"
-                        android:orientation="vertical">
 
                         <LinearLayout
+                            android:id="@+id/ln_user_follow"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:baselineAligned="false"
+                            android:layout_centerInParent="true"
+                            android:layout_toEndOf="@id/avatar"
+                            android:visibility="gone"
+                            android:layout_marginStart="16dp"
+                            tools:visibility="visible"
                             android:orientation="horizontal">
 
                             <LinearLayout
@@ -122,13 +118,6 @@
                                     android:text="@string/repositories" />
                             </LinearLayout>
                         </LinearLayout>
-                        <Button
-                            android:id="@+id/btn_favorite"
-                            android:layout_gravity="center"
-                            android:text="@string/favorite"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"/>
-                    </LinearLayout>
                 </RelativeLayout>
 
                 <TextView
@@ -163,5 +152,16 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/btn_favorite"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:foregroundGravity="bottom"
+        app:fabSize="normal"
+        app:layout_anchor="@id/view_pager"
+        app:layout_anchorGravity="bottom|end"
+        app:srcCompat="@drawable/ic_favorite_border" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -13,4 +13,8 @@
     <string name="change_language">Ganti bahasa</string>
     <string name="not_found">Username tidak ditemukan</string>
     <string name="favorite">Favorit</string>
+    <string name="favorite_success">Menambah ke favorit sukses</string>
+    <string name="favorite_failed">Menambah ke favorit gagal</string>
+    <string name="remove_favorite_success">Menghapus dari favorit sukses</string>
+    <string name="remove_favorite_failed">Menghapus dari favorit gagal</string>
 </resources>
