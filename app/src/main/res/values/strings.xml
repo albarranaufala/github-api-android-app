@@ -17,4 +17,10 @@
     <string name="remove_favorite_success">Remove from favorite success</string>
     <string name="remove_favorite_failed">Remove from favorite failed</string>
     <string name="favorite_empty">Your favorites list is empty</string>
+    <string name="reminder_9am">Reminder at 9.00 AM</string>
+    <string name="reminder_9am_summary">You will receive a notification from us</string>
+    <string name="reminder_on">Reminder on</string>
+    <string name="reminder_off">Reminder off</string>
+    <string name="language_summary">English</string>
+    <string name="setting">Settings</string>
 </resources>

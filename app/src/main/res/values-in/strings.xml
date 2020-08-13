@@ -18,4 +18,10 @@
     <string name="remove_favorite_success">Menghapus dari favorit sukses</string>
     <string name="remove_favorite_failed">Menghapus dari favorit gagal</string>
     <string name="favorite_empty">Kamu tidak memiliki daftar favorit</string>
+    <string name="reminder_9am">Ingatkan pada jam 9.00 Pagi</string>
+    <string name="reminder_9am_summary">Kamu akan menerima notifikasi dari kami</string>
+    <string name="reminder_on">Pengingat diaktifkan</string>
+    <string name="reminder_off">Pengingat dinonaktifkan</string>
+    <string name="language_summary">Indonesia</string>
+    <string name="setting">Pengaturan</string>
 </resources>
