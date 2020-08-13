@@ -13,7 +13,7 @@ object MappingHelper {
                 val username = getString(getColumnIndexOrThrow(UserContract.UserColumns.USERNAME))
                 val githubUrl = getString(getColumnIndexOrThrow(UserContract.UserColumns.GITHUB_URL))
                 val avatar = getString(getColumnIndexOrThrow(UserContract.UserColumns.AVATAR))
-                usersList.add(User(id, username, githubUrl, avatar))
+                usersList.add(User(id, username, avatar, githubUrl))
             }
         }
         return usersList

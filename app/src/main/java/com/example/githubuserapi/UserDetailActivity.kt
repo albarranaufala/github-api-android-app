@@ -3,7 +3,6 @@ package com.example.githubuserapi
 import android.content.ContentValues
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.lifecycle.Observer
@@ -16,21 +15,11 @@ import com.example.githubuserapi.model.User
 import com.example.githubuserapi.viewmodel.UserDetailViewModel
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_user_detail.*
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.async
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.*
 
 class UserDetailActivity : AppCompatActivity(), View.OnClickListener {
     companion object{
         const val EXTRA_USER = "extra_user"
-        const val REQUEST_ADD = 100
-        const val RESULT_ADD = 101
-        const val REQUEST_UPDATE = 200
-        const val RESULT_UPDATE = 201
-        const val RESULT_DELETE = 301
-        const val ALERT_DIALOG_CLOSE = 10
-        const val ALERT_DIALOG_DELETE = 20
     }
 
     private lateinit var userDetailViewModel: UserDetailViewModel
@@ -75,7 +64,8 @@ class UserDetailActivity : AppCompatActivity(), View.OnClickListener {
             it.setDisplayHomeAsUpEnabled(true)
         }
 
-        checkFavorite(user.username)
+        isFavorite = checkFavorite(user.username)
+        changeFloatingIcon(isFavorite)
 
         btn_favorite.setOnClickListener(this)
     }
@@ -125,18 +115,17 @@ class UserDetailActivity : AppCompatActivity(), View.OnClickListener {
         }
     }
 
-    fun checkFavorite(username: String){
-        GlobalScope.launch(Dispatchers.Main) {
-            showLoading(true)
-            val deferredNotes = async(Dispatchers.IO) {
+    fun checkFavorite(username: String):Boolean{
+        var isFav = false
+        runBlocking{
+            val deferedUsers = async(Dispatchers.IO) {
                 val cursor = userHelper.queryByUsername(username)
                 MappingHelper.mapCursorToArrayList(cursor)
             }
-            showLoading(false)
-            val users = deferredNotes.await()
-            isFavorite = users.size > 0
-            changeFloatingIcon(isFavorite)
+            val users = deferedUsers.await()
+            isFav = users.size > 0
         }
+        return isFav
     }
 
     fun changeFloatingIcon(isFav: Boolean){

@@ -17,4 +17,5 @@
     <string name="favorite_failed">Menambah ke favorit gagal</string>
     <string name="remove_favorite_success">Menghapus dari favorit sukses</string>
     <string name="remove_favorite_failed">Menghapus dari favorit gagal</string>
+    <string name="favorite_empty">Kamu tidak memiliki daftar favorit</string>
 </resources>

@@ -16,4 +16,5 @@
     <string name="favorite_failed">Add to favorite failed</string>
     <string name="remove_favorite_success">Remove from favorite success</string>
     <string name="remove_favorite_failed">Remove from favorite failed</string>
+    <string name="favorite_empty">Your favorites list is empty</string>
 </resources>

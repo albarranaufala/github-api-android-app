@@ -6,7 +6,11 @@
             android:title="@string/search_user"
             android:icon = "@drawable/ic_search_white_24"
             app:actionViewClass="android.widget.SearchView"
-            app:showAsAction="collapseActionView|always" />
+            app:showAsAction="collapseActionView|ifRoom" />
+        <item android:id="@+id/menuFavorite"
+            android:title="@string/favorite"
+            android:icon = "@drawable/ic_favorite_fill"
+            app:showAsAction="always" />
         <item android:id="@+id/menuChangeLanguage"
             android:title="@string/change_language" />
     </group>
