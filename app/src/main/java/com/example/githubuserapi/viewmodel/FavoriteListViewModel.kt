@@ -16,7 +16,7 @@ import kotlinx.coroutines.launch
 class FavoriteListViewModel : ViewModel() {
     val listFavorites = MutableLiveData<ArrayList<User>>()
 
-    fun setFavorites(userHelper: UserHelper, contentResolver: ContentResolver){
+    fun setFavorites(contentResolver: ContentResolver){
         GlobalScope.launch(Dispatchers.Main) {
             val deferredFavorites = async(Dispatchers.IO) {
                 val cursor = contentResolver.query(CONTENT_URI, null, null, null, null)

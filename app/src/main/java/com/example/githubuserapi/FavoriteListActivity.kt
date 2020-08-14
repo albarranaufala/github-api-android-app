@@ -1,6 +1,5 @@
 package com.example.githubuserapi
 
-import android.content.ContentResolver
 import android.database.ContentObserver
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -13,22 +12,17 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.githubuserapi.adapter.UserAdapter
 import com.example.githubuserapi.db.UserContract.UserColumns.Companion.CONTENT_URI
-import com.example.githubuserapi.db.UserHelper
 import com.example.githubuserapi.viewmodel.FavoriteListViewModel
 import kotlinx.android.synthetic.main.activity_favorite_list.*
 import kotlinx.android.synthetic.main.activity_favorite_list.progressBar
 
 class FavoriteListActivity : AppCompatActivity() {
     private lateinit var adapter: UserAdapter
-    private lateinit var userHelper: UserHelper
     private lateinit var favoriteListViewModel: FavoriteListViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_favorite_list)
-
-        userHelper = UserHelper.getInstance(applicationContext)
-        userHelper.open()
 
         adapter = UserAdapter()
         adapter.notifyDataSetChanged()
@@ -45,7 +39,7 @@ class FavoriteListActivity : AppCompatActivity() {
 
         val myObserver = object : ContentObserver(handler){
             override fun onChange(self: Boolean){
-                favoriteListViewModel.setFavorites(userHelper, contentResolver)
+                favoriteListViewModel.setFavorites(contentResolver)
             }
         }
 
@@ -78,7 +72,7 @@ class FavoriteListActivity : AppCompatActivity() {
     override fun onResume() {
         super.onResume()
 
-        favoriteListViewModel.setFavorites(userHelper, contentResolver)
+        favoriteListViewModel.setFavorites(contentResolver)
     }
 
     private fun showLoading(state: Boolean) {

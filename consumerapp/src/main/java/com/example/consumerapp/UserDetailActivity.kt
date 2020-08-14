@@ -1,4 +1,4 @@
-package com.example.githubuserapi
+package com.example.consumerapp
 
 import android.content.ContentValues
 import android.database.Cursor
@@ -10,13 +10,12 @@ import android.view.View
 import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import com.example.githubuserapi.adapter.SectionsPagerAdapter
-import com.example.githubuserapi.db.UserContract
-import com.example.githubuserapi.db.UserContract.UserColumns.Companion.CONTENT_URI
-import com.example.githubuserapi.db.UserHelper
-import com.example.githubuserapi.helper.MappingHelper
-import com.example.githubuserapi.model.User
-import com.example.githubuserapi.viewmodel.UserDetailViewModel
+import com.example.consumerapp.adapter.SectionsPagerAdapter
+import com.example.consumerapp.db.FavoriteContract
+import com.example.consumerapp.db.FavoriteContract.FavoriteColumns.Companion.CONTENT_URI
+import com.example.consumerapp.helper.MappingHelper
+import com.example.consumerapp.model.Favorite
+import com.example.consumerapp.viewmodel.UserDetailViewModel
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_user_detail.*
 import kotlinx.coroutines.*
@@ -27,14 +26,14 @@ class UserDetailActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     private lateinit var userDetailViewModel: UserDetailViewModel
-    private var user = User()
+    private var user = Favorite()
     private var isFavorite = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_user_detail)
 
-        user = intent.getParcelableExtra<User>(EXTRA_USER) as User
+        user = intent.getParcelableExtra<Favorite>(EXTRA_USER) as Favorite
         textUsername.text = user.username
         textGithubUrl.text = user.githubUrl
 
@@ -90,9 +89,9 @@ class UserDetailActivity : AppCompatActivity(), View.OnClickListener {
             R.id.btn_favorite -> {
                 if(!isFavorite){
                     val values = ContentValues()
-                    values.put(UserContract.UserColumns.USERNAME, user.username)
-                    values.put(UserContract.UserColumns.AVATAR, user.avatar)
-                    values.put(UserContract.UserColumns.GITHUB_URL, user.githubUrl)
+                    values.put(FavoriteContract.FavoriteColumns.USERNAME, user.username)
+                    values.put(FavoriteContract.FavoriteColumns.AVATAR, user.avatar)
+                    values.put(FavoriteContract.FavoriteColumns.GITHUB_URL, user.githubUrl)
 
                     contentResolver.insert(CONTENT_URI, values)
                     Toast.makeText(this, R.string.favorite_success, Toast.LENGTH_SHORT).show()

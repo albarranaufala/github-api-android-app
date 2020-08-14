@@ -1,4 +1,4 @@
-package com.example.githubuserapi.fragment
+package com.example.consumerapp.Fragment
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -8,14 +8,14 @@ import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.githubuserapi.R
-import com.example.githubuserapi.adapter.UserAdapter
-import com.example.githubuserapi.viewmodel.FollowerViewModel
+import com.example.consumerapp.R
+import com.example.consumerapp.adapter.FavoriteAdapter
+import com.example.consumerapp.viewmodel.FollowerViewModel
 import kotlinx.android.synthetic.main.fragment_follower.*
 import kotlinx.android.synthetic.main.fragment_follower.progressBar
 
 class FollowerFragment : Fragment() {
-    private lateinit var adapter: UserAdapter
+    private lateinit var adapter: FavoriteAdapter
     private lateinit var followerViewModel: FollowerViewModel
 
     companion object{
@@ -43,7 +43,7 @@ class FollowerFragment : Fragment() {
         arguments?.let {
             username = it.getString(ARG_USERNAME)
         }
-        adapter = UserAdapter()
+        adapter = FavoriteAdapter()
         adapter.notifyDataSetChanged()
 
         recyclerViewFollowers.layoutManager = LinearLayoutManager(context)

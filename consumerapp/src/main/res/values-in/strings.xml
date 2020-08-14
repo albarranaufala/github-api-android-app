@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Pengguna Github</string>
+    <string name="username">username</string>
+    <string name="followers">pengikut</string>
+    <string name="following">mengikuti</string>
+    <string name="repositories">repo</string>
+    <string name="github_label">Github</string>
+    <string name="github_url">https://www.github.com/albarranaufala</string>
+    <string name="search_user">Cari user</string>
+    <string name="tab_followers">pengikut</string>
+    <string name="tab_following">mengikuti</string>
+    <string name="change_language">Ganti bahasa</string>
+    <string name="not_found">Username tidak ditemukan</string>
+    <string name="favorite">Favorit</string>
+    <string name="favorite_success">Menambah ke favorit sukses</string>
+    <string name="favorite_failed">Menambah ke favorit gagal</string>
+    <string name="remove_favorite_success">Menghapus dari favorit sukses</string>
+    <string name="remove_favorite_failed">Menghapus dari favorit gagal</string>
+    <string name="favorite_empty">Kamu tidak memiliki daftar favorit</string>
+    <string name="reminder_title">Pengingat</string>
+    <string name="reminder_label">Ayo cari pengguna populer di Github!</string>
+    <string name="reminder_9am">Ingatkan pada jam 9.00 Pagi</string>
+    <string name="reminder_9am_summary">Kamu akan menerima notifikasi dari kami</string>
+    <string name="reminder_on">Pengingat diaktifkan</string>
+    <string name="reminder_off">Pengingat dinonaktifkan</string>
+    <string name="language_summary">Indonesia</string>
+    <string name="setting">Pengaturan</string>
+</resources>

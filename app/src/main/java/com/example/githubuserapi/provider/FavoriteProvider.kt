@@ -38,8 +38,6 @@ class FavoriteProvider : ContentProvider() {
         uri: Uri, projection: Array<String>?, selection: String?,
         selectionArgs: Array<String>?, sortOrder: String?
     ): Cursor? {
-        Log.d("URI", uri.toString())
-        Log.d("URI MATCHER", sUriMatcher.match(uri).toString())
         return when(sUriMatcher.match(uri)){
             FAVORITE -> userHelper.queryAll()
             FAVORITE_USERNAME -> userHelper.queryByUsername(uri.lastPathSegment.toString())
