@@ -1,14 +1,18 @@
 package com.example.githubuserapi
 
 import android.content.ContentValues
+import android.database.Cursor
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.githubuserapi.adapter.SectionsPagerAdapter
 import com.example.githubuserapi.db.UserContract
+import com.example.githubuserapi.db.UserContract.UserColumns.Companion.CONTENT_URI
 import com.example.githubuserapi.db.UserHelper
 import com.example.githubuserapi.helper.MappingHelper
 import com.example.githubuserapi.model.User
@@ -94,20 +98,12 @@ class UserDetailActivity : AppCompatActivity(), View.OnClickListener {
                     values.put(UserContract.UserColumns.AVATAR, user.avatar)
                     values.put(UserContract.UserColumns.GITHUB_URL, user.githubUrl)
 
-                    val result = userHelper.insert(values)
-                    if(result > 0) {
-                        Toast.makeText(this, R.string.favorite_success, Toast.LENGTH_SHORT).show()
-                    } else {
-                        Toast.makeText(this, R.string.favorite_failed, Toast.LENGTH_SHORT).show()
-                    }
+                    contentResolver.insert(CONTENT_URI, values)
+                    Toast.makeText(this, R.string.favorite_success, Toast.LENGTH_SHORT).show()
                 }
                 else {
-                    val result = userHelper.deleteByUsername(user.username)
-                    if(result > 0) {
-                        Toast.makeText(this, R.string.remove_favorite_success, Toast.LENGTH_SHORT).show()
-                    } else {
-                        Toast.makeText(this, R.string.remove_favorite_failed, Toast.LENGTH_SHORT).show()
-                    }
+                    contentResolver.delete(Uri.parse(CONTENT_URI.toString() + "/" + user.username), null, null)
+                    Toast.makeText(this, R.string.remove_favorite_success, Toast.LENGTH_SHORT).show()
                 }
                 isFavorite = !isFavorite
                 changeFloatingIcon(isFavorite)
@@ -117,12 +113,10 @@ class UserDetailActivity : AppCompatActivity(), View.OnClickListener {
 
     fun checkFavorite(username: String):Boolean{
         var isFav = false
-        runBlocking{
-            val deferedUsers = async(Dispatchers.IO) {
-                val cursor = userHelper.queryByUsername(username)
-                MappingHelper.mapCursorToArrayList(cursor)
-            }
-            val users = deferedUsers.await()
+        val cursor = contentResolver.query(Uri.parse(CONTENT_URI.toString() + "/" + user.username), null, null, null, null)
+        if (cursor != null) {
+            val users = MappingHelper.mapCursorToArrayList(cursor)
+            cursor.close()
             isFav = users.size > 0
         }
         return isFav

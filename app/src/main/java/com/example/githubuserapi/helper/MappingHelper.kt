@@ -18,4 +18,17 @@ object MappingHelper {
         }
         return usersList
     }
+
+    fun mapCursorToObject(userCursor: Cursor?): User {
+        var user = User()
+        userCursor?.apply {
+            moveToFirst()
+            val id = getInt(getColumnIndexOrThrow(UserContract.UserColumns._ID))
+            val username = getString(getColumnIndexOrThrow(UserContract.UserColumns.USERNAME))
+            val githubUrl = getString(getColumnIndexOrThrow(UserContract.UserColumns.GITHUB_URL))
+            val avatar = getString(getColumnIndexOrThrow(UserContract.UserColumns.AVATAR))
+            user = User(id, username, avatar, githubUrl)
+        }
+        return user
+    }
 }
