@@ -67,6 +67,10 @@ class UserHelper(context: Context) {
         return database.insert(DATABASE_TABLE, null, values)
     }
 
+    fun updateByUsername(username: String, values: ContentValues?): Int {
+        return database.update(DATABASE_TABLE, values, "$USERNAME = ?", arrayOf(username))
+    }
+
     fun deleteByUsername(username: String): Int {
         return database.delete(DATABASE_TABLE, "$USERNAME = '$username'", null)
     }

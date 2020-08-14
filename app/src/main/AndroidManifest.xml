@@ -3,9 +3,10 @@
     package="com.example.githubuserapi">
 
     <uses-permission android:name="android.permission.INTERNET" />
-
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.VIBRATE" />
+    <permission android:name="com.example.githubuserapi.READ_DATABASE" android:protectionLevel="normal"/>
+    <permission android:name="com.example.githubuserapi.WRITE_DATABASE" android:protectionLevel="normal"/>
 
     <application
         android:allowBackup="true"
@@ -15,10 +16,20 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".SettingActivity"/>
+
+        <provider
+            android:name=".provider.FavoriteProvider"
+            android:authorities="com.example.githubuserapi"
+            android:enabled="true"
+            android:exported="true"
+            android:readPermission="com.example.githubuserapi.READ_DATABASE"
+            android:writePermission="com.example.githubuserapi.WRITE_DATABASE"/>
+
+        <activity android:name=".SettingActivity" />
         <activity android:name=".FavoriteListActivity" />
         <activity android:name=".UserDetailActivity" />
-        <activity android:name=".MainActivity"
+        <activity
+            android:name=".MainActivity"
             android:launchMode="singleTop">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
